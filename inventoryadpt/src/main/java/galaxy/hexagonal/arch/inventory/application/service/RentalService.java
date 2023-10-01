@@ -1,11 +1,11 @@
-package galaxy.hexagonal.arch.inventory.service;
+package galaxy.hexagonal.arch.inventory.application.service;
 
 import galaxy.hexagonal.arch.domain.inventory.FrozenInventory;
 import galaxy.hexagonal.arch.domain.rental.RentedVehicle;
-import galaxy.hexagonal.arch.inventory.exception.InventoryException;
-import galaxy.hexagonal.arch.port.in.rental.FinalizeRentalUseCase;
-import galaxy.hexagonal.arch.port.in.rental.ReturnVehicleUseCase;
-import galaxy.hexagonal.arch.port.in.rental.RollbackRentalUseCase;
+import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
+import galaxy.hexagonal.arch.inventory.application.port.in.rental.FinalizeRentalUseCase;
+import galaxy.hexagonal.arch.inventory.application.port.in.rental.ReturnVehicleUseCase;
+import galaxy.hexagonal.arch.inventory.application.port.in.rental.RollbackRentalUseCase;
 
 public class RentalService implements FinalizeRentalUseCase, RollbackRentalUseCase, ReturnVehicleUseCase {
 

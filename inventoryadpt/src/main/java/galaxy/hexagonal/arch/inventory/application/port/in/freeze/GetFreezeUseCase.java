@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.port.in.freeze;
+package galaxy.hexagonal.arch.inventory.application.port.in.freeze;
 
 import galaxy.hexagonal.arch.domain.inventory.FrozenInventory;
 

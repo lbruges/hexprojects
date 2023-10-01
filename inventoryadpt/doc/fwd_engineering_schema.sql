@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `galaxyrental`.`vehicleitem` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `plate` VARCHAR(45) NOT NULL,
   `origin` VARCHAR(150) NOT NULL,
-  `state` VARCHAR(45) NOT NULL DEFAULT 'AVAILABLE',
+  `status` VARCHAR(45) NOT NULL DEFAULT 'AVAILABLE',
   `vehicleproduct_id` INT NOT NULL,
   `freeze_id` INT NULL,
   `rental_id` INT NULL,

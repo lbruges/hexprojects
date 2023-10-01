@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.port.in.catalog;
+package galaxy.hexagonal.arch.inventory.application.port.in.catalog;
 
 import galaxy.hexagonal.arch.domain.catalog.VehicleItem;
 

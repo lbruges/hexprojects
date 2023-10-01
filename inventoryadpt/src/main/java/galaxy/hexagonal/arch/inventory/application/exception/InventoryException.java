@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.inventory.exception;
+package galaxy.hexagonal.arch.inventory.application.exception;
 
 import galaxy.hexagonal.arch.exception.BaseException;
 import galaxy.hexagonal.arch.exception.ErrorType;

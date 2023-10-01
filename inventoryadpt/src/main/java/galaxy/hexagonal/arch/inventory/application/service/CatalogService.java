@@ -1,7 +1,7 @@
-package galaxy.hexagonal.arch.inventory.service;
+package galaxy.hexagonal.arch.inventory.application.service;
 
 import galaxy.hexagonal.arch.domain.catalog.VehicleItem;
-import galaxy.hexagonal.arch.port.in.catalog.GetRentableVehiclesUseCase;
+import galaxy.hexagonal.arch.inventory.application.port.in.catalog.GetRentableVehiclesUseCase;
 
 import java.util.List;
 
