@@ -1,6 +1,6 @@
-package galaxy.hexagonal.arch.domain.billing;
+package galaxy.hexagonal.arch.domain.inventory.resp;
 
-import galaxy.hexagonal.arch.domain.Person;
+import galaxy.hexagonal.arch.domain.inventory.resp.VehicleItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Bill {
-    private LocalDate rentalDate;
-    private String concept;
-    private List<Item> items;
-    private Person purchaser;
+public class Catalog {
+    private LocalDate rentalStartDate;
+    private LocalDate rentalEndDate;
+    private List<VehicleItem> availableVehicles;
 }

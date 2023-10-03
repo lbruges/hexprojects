@@ -49,8 +49,10 @@ CREATE TABLE IF NOT EXISTS `galaxyrental`.`freeze` (
   `freeze_date` DATETIME NOT NULL DEFAULT NOW(),
   `freeze_time_minutes` INT NOT NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
+  `freeze_code` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `freeze_code_UNIQUE` (`freeze_code` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

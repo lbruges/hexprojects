@@ -1,6 +1,5 @@
-package galaxy.hexagonal.arch.domain.rental;
+package galaxy.hexagonal.arch.domain.inventory.resp;
 
-import galaxy.hexagonal.arch.domain.RentalPeriod;
 import galaxy.hexagonal.arch.domain.inventory.Vehicle;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=true)
-public class RentedVehicle extends Vehicle {
-    private String plate;
-    private RentalPeriod rentalPeriod;
+public class VehicleItem extends Vehicle {
+    private String sku;
+    private int availableUnits;
 }

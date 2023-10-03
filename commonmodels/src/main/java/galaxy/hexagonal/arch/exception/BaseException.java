@@ -1,6 +1,6 @@
 package galaxy.hexagonal.arch.exception;
 
-public abstract class BaseException extends Exception {
+public abstract class BaseException extends RuntimeException {
     private static final String EXCEPTION_MESSAGE_FORMAT = "Error code: %s. Message: %s.";
     private final ErrorType errorType;
     public BaseException(ErrorType errorType) {

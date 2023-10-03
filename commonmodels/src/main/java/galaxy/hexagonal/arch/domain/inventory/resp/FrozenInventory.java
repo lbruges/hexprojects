@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.domain.billing;
+package galaxy.hexagonal.arch.domain.inventory.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Item {
-
-    private String code;
-    private double basePrice;
-    private double totalPrice;
-    private int units;
-
+public class FrozenInventory {
+    private String freezeCode;
+    private VehicleItem vehicleItem;
 }

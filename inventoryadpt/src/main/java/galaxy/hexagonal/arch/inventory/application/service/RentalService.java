@@ -1,6 +1,6 @@
 package galaxy.hexagonal.arch.inventory.application.service;
 
-import galaxy.hexagonal.arch.domain.inventory.FrozenInventory;
+import galaxy.hexagonal.arch.domain.inventory.resp.FrozenInventory;
 import galaxy.hexagonal.arch.domain.rental.RentedVehicle;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 import galaxy.hexagonal.arch.inventory.application.port.in.rental.FinalizeRentalUseCase;
