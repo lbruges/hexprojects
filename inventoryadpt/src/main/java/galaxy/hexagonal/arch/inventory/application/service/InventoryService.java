@@ -7,9 +7,11 @@ import galaxy.hexagonal.arch.inventory.application.port.in.inventory.AddProductU
 import galaxy.hexagonal.arch.inventory.application.port.in.inventory.AddVehicleUseCase;
 import galaxy.hexagonal.arch.inventory.application.port.in.inventory.GetAllProductsUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class InventoryService implements AddProductUseCase, AddVehicleUseCase, GetAllProductsUseCase {
 
@@ -23,6 +25,7 @@ public class InventoryService implements AddProductUseCase, AddVehicleUseCase, G
         }
 
         adapter.createProduct(product);
+
     }
 
     @Override

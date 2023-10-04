@@ -12,7 +12,7 @@ import lombok.Data;
 public abstract class GenericEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 

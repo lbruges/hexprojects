@@ -13,11 +13,13 @@ import galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository.ModelReposit
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository.ProductRepository;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
 @Controller
+@Profile("mysql")
 @RequiredArgsConstructor
 public class MySqlInventoryAdapter extends InventoryAdapter {
 
