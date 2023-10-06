@@ -1,8 +1,9 @@
-package galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper.impl;
+package galaxy.hexagonal.arch.inventory.adapter.out.mongo.mapper;
+
 import galaxy.hexagonal.arch.domain.inventory.VehicleType;
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
-import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Model;
-import galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper.GenericDomainEntityMapper;
+import galaxy.hexagonal.arch.inventory.adapter.out.mongo.document.Model;
+import galaxy.hexagonal.arch.inventory.application.mapper.GenericDomainEntityMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,9 +12,9 @@ public class ModelMapper extends GenericDomainEntityMapper<VehicleModel, Model> 
     public Model toEntity(VehicleModel domain) {
         return Model.builder()
                 .model(domain.model())
+                .year(domain.year())
                 .brand(domain.brand())
                 .type(domain.type().name())
-                .year(domain.year())
                 .build();
     }
 
@@ -22,5 +23,4 @@ public class ModelMapper extends GenericDomainEntityMapper<VehicleModel, Model> 
         return new VehicleModel(VehicleType.valueOf(entity.getType()), entity.getBrand(), entity.getModel(),
                 entity.getYear());
     }
-
 }

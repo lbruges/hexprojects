@@ -2,7 +2,7 @@ package galaxy.hexagonal.arch.inventory.application.service;
 
 import galaxy.hexagonal.arch.domain.inventory.req.InventoryVehicleItem;
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
-import galaxy.hexagonal.arch.inventory.adapter.out.InventoryAdapter;
+import galaxy.hexagonal.arch.inventory.application.port.out.inventory.InventoryGenericPort;
 import galaxy.hexagonal.arch.inventory.application.port.in.inventory.AddProductUseCase;
 import galaxy.hexagonal.arch.inventory.application.port.in.inventory.AddVehicleUseCase;
 import galaxy.hexagonal.arch.inventory.application.port.in.inventory.GetAllProductsUseCase;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InventoryService implements AddProductUseCase, AddVehicleUseCase, GetAllProductsUseCase {
 
-    private final InventoryAdapter adapter;
+    private final InventoryGenericPort adapter;
 
     @Override
     public void addProductToCatalog(VehicleProduct product) {

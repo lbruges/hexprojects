@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper;
+package galaxy.hexagonal.arch.inventory.application.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
