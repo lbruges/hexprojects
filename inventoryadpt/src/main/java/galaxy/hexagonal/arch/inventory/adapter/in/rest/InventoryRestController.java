@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.inventory.application.rest;
+package galaxy.hexagonal.arch.inventory.adapter.in.rest;
 
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
 import galaxy.hexagonal.arch.inventory.application.service.InventoryService;
