@@ -3,6 +3,7 @@ package galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.generics.GenericStatusEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,5 +30,8 @@ public class Freeze extends GenericStatusEntity {
 
     @Column(name = "freeze_code")
     private String freezeCode;
+
+    @OneToOne(mappedBy = "Freeze")
+    private Vehicle vehicle;
 
 }

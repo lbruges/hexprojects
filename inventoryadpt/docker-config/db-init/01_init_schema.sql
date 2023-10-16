@@ -77,8 +77,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`rental` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `rental_time` DATETIME NOT NULL DEFAULT NOW(),
-  `rental_period_days` INT NOT NULL,
+  `rental_start_date` DATETIME NOT NULL DEFAULT NOW(),
+  `rental_end_date` DATETIME NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
   `renter_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -136,7 +136,7 @@ DROP PROCEDURE IF EXISTS `galaxyrental`.`rentalupdate`;
 DELIMITER $$
 CREATE PROCEDURE `galaxyrental`.`rentalupdate` ()
 BEGIN
-	UPDATE `galaxyrental`.`rental` SET `status` = 'OVERDUE' WHERE DATE_ADD(`rental_time`, INTERVAL `rental_period_days` DAY) < NOW();
+	UPDATE `galaxyrental`.`rental` SET `status` = 'OVERDUE' WHERE rental_end_date < NOW();
 END $$
 DELIMITER ;
 

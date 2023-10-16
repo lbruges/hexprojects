@@ -1,20 +1,27 @@
 package galaxy.hexagonal.arch.inventory.application.service;
 
-import galaxy.hexagonal.arch.domain.RentalPeriod;
-import galaxy.hexagonal.arch.domain.inventory.Vehicle;
+import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.inventory.resp.FrozenInventory;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 import galaxy.hexagonal.arch.inventory.application.port.in.freeze.FreezeRentalUseCase;
 import galaxy.hexagonal.arch.inventory.application.port.in.freeze.GetFreezeUseCase;
+import galaxy.hexagonal.arch.inventory.application.port.out.freeze.GenericFreezePort;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class FreezeService implements FreezeRentalUseCase, GetFreezeUseCase {
+
+    private final GenericFreezePort freezePort;
+
     @Override
-    public FrozenInventory freezeRental(Vehicle vehicle, RentalPeriod rentalPeriod) throws InventoryException {
-        return null;
+    public FrozenInventory freezeRental(String sku, Period freezePeriod) throws InventoryException {
+        return freezePort.freezeVehicle(sku, freezePeriod.getDuration().toMinutesPart(),
+                freezePeriod.getStartDateTime());
     }
 
     @Override
     public FrozenInventory getFreeze(String freezeCode) {
-        return null;
+        return freezePort.getFreeze(freezeCode);
     }
+
 }

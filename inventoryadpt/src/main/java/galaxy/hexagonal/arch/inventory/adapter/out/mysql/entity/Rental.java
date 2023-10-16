@@ -23,11 +23,11 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper=true)
 public class Rental extends GenericStatusEntity {
 
-    @Column(name="rental_time")
-    private LocalDateTime rentalTime;
+    @Column(name="rental_start_date")
+    private LocalDateTime rentalStartDate;
 
-    @Column(name = "rental_period_days")
-    private int rentalPeriodInDays;
+    @Column(name="rental_end_date")
+    private LocalDateTime rentalEndDate;
 
     @OneToOne
     @JoinColumn(name = "renter_id")

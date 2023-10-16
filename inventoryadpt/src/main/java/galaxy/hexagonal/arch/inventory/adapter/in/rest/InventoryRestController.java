@@ -1,33 +1,22 @@
 package galaxy.hexagonal.arch.inventory.adapter.in.rest;
 
+import galaxy.hexagonal.arch.domain.inventory.req.InventoryVehicleItem;
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
-import galaxy.hexagonal.arch.inventory.application.service.InventoryService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Routes.INVENTORY_VEHICLE_PATH;
 
-@Controller
-@RequestMapping(path="/products")
-@RequiredArgsConstructor
-public class InventoryRestController {
-
-    final InventoryService inventoryService;
-
+public interface InventoryRestController {
     @GetMapping
-    public @ResponseBody List<VehicleProduct> getAllProducts() {
-        return inventoryService.getAllProducts();
-    }
+    ResponseEntity<?> getAllProducts();
 
     @PostMapping
-    public @ResponseBody boolean createProduct(@RequestBody VehicleProduct vehicleProduct) {
-        inventoryService.addProductToCatalog(vehicleProduct);
-        return true;
-    }
+    ResponseEntity<?> createProduct(@RequestBody VehicleProduct vehicleProduct);
+
+    @PostMapping(path = INVENTORY_VEHICLE_PATH)
+    ResponseEntity<?> createVehicle(@RequestBody InventoryVehicleItem vehicleItem);
 
 }

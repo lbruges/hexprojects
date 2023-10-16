@@ -1,5 +1,8 @@
 package galaxy.hexagonal.arch.exception;
 
+import lombok.Data;
+
+@Data
 public abstract class BaseException extends RuntimeException {
     private static final String EXCEPTION_MESSAGE_FORMAT = "Error code: %s. Message: %s.";
     private final ErrorType errorType;

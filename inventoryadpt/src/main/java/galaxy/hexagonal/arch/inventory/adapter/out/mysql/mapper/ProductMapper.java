@@ -4,9 +4,7 @@ import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Product;
 import galaxy.hexagonal.arch.inventory.application.mapper.GenericDomainEntityMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
 @RequiredArgsConstructor
 public class ProductMapper extends GenericDomainEntityMapper<VehicleProduct, Product> {
 

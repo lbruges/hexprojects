@@ -9,6 +9,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema galaxyrental
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `galaxyrental` DEFAULT CHARACTER SET utf8 ;
@@ -58,8 +59,10 @@ CREATE TABLE IF NOT EXISTS `galaxyrental`.`freeze` (
   `freeze_date` DATETIME NOT NULL DEFAULT NOW(),
   `freeze_time_minutes` INT NOT NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
+  `freeze_code` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `freeze_code_UNIQUE` (`freeze_code` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -84,8 +87,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`rental` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `rental_time` DATETIME NOT NULL DEFAULT NOW(),
-  `rental_period_days` INT NOT NULL,
+  `rental_start_date` DATETIME NOT NULL DEFAULT NOW(),
+  `rental_end_date` DATETIME NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
   `renter_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -133,4 +136,3 @@ CREATE TABLE IF NOT EXISTS `galaxyrental`.`vehicleitem` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
