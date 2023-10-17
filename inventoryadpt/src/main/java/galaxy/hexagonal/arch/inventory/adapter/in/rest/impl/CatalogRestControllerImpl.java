@@ -2,7 +2,6 @@ package galaxy.hexagonal.arch.inventory.adapter.in.rest.impl;
 
 import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.inventory.resp.VehicleItem;
-import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.CatalogRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
 import galaxy.hexagonal.arch.inventory.application.service.CatalogService;

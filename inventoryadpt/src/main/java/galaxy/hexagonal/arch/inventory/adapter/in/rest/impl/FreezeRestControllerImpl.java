@@ -15,6 +15,7 @@ import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Rou
 @RequestMapping(path = FREEZE_PATH)
 @RequiredArgsConstructor
 public class FreezeRestControllerImpl extends BaseRestController implements FreezeRestController {
+
     private final FreezeService freezeService;
 
     @Override
