@@ -1,6 +1,10 @@
 package galaxy.hexagonal.arch.inventory.application.port.in.rental;
 
+import galaxy.hexagonal.arch.domain.rental.Renter;
+
 public interface ReturnVehicleUseCase {
-    void returnVehicle(String vehiclePlate, String renterIdDocument);
+
+    // TODO: add constraint to renter id + licence id
+    void returnVehicle(String vehiclePlate, Renter renter);
 
 }

@@ -1,5 +1,6 @@
 package galaxy.hexagonal.arch.domain.rental;
 
+import galaxy.hexagonal.arch.domain.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,8 +12,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=true)
-public class RentedVehicle extends RentableVehicle {
-
-    private Renter renter;
+public class Renter extends Person {
+    private String origin; //city + country
+    private String licenceNumber;
 
 }

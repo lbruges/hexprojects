@@ -41,6 +41,9 @@ public abstract class BaseRestController {
     protected ResponseEntity<?> ofCreated() {
         return new ResponseEntity<>(HttpStatusCode.valueOf(201));
     }
+    protected ResponseEntity<?> ofNoContent() {
+        return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+    }
 
     private ResponseEntity<ErrorResponse> getErrorResponseFromErrorType(ErrorType errorType, String details) {
 

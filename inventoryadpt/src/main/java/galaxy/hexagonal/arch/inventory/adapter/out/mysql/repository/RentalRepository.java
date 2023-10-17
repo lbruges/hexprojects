@@ -1,4 +1,7 @@
 package galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository;
 
-public interface RentalRepository {
+import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Rental;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RentalRepository extends JpaRepository<Rental, Integer> {
 }

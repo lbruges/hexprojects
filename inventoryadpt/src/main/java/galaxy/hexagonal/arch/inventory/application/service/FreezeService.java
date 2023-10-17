@@ -26,7 +26,7 @@ public class FreezeService implements FreezeRentalUseCase, GetFreezeUseCase, Rol
     }
 
     @Override
-    public void rollbackRental(String freezeCode) throws InventoryException {
+    public void rollbackFreeze(String freezeCode) throws InventoryException {
         freezePort.thawVehicle(freezeCode);
     }
 }
