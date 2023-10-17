@@ -1,8 +1,8 @@
-package galaxy.hexagonal.arch.inventory.application.port.in.rental;
+package galaxy.hexagonal.arch.inventory.application.port.in.freeze;
 
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 
-public interface RollbackRentalUseCase {
+public interface RollbackFreezeUseCase {
     void rollbackRental(String freezeCode) throws InventoryException;
 
 }

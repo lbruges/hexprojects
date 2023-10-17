@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FreezeRepository extends JpaRepository<Freeze, Integer> {
 
     Freeze findByFreezeCode(String freezeCode);
+    void deleteByFreezeCode(String freezeCode);
 
 }

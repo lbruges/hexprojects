@@ -75,4 +75,13 @@ public class MySqlFreezeAdapter extends GenericFreezePort {
             throw new InventoryException(ErrorType.FREEZE_NOT_FOUND);
         }
     }
+
+    @Override
+    public void thawVehicle(String freezeCode) {
+        try {
+            freezeRepository.deleteByFreezeCode(freezeCode);
+        } catch (Exception e) {
+            throw new InventoryException(ErrorType.UNABLE_TO_THAW);
+        }
+    }
 }

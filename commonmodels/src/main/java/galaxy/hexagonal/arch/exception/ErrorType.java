@@ -13,8 +13,11 @@ public enum ErrorType {
     EMPTY_CATALOG("104", "No vehicles available to offer.", 404),
     FAILED_TO_FREEZE("105", "Failed to perform freeze. Please try again." , 500),
     FREEZE_NOT_FOUND("106", "Freeze not found." , 404),
+    UNABLE_TO_THAW("107", "Could not release the inventory for the freeze. Please retry later." , 500),
+
     //Accounting errors.
     RENTAL_ACCOUNTING_ERROR("201", "Error while accounting rental.", 500),
+
     //Calendar errors.
     INVALID_DATE_RANGE("301", "Invalid date range.", 400);
 
