@@ -1,7 +1,9 @@
 package galaxy.hexagonal.arch.inventory.application.service.impl;
 
 import galaxy.hexagonal.arch.domain.inventory.req.InventoryVehicleItem;
-import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
+import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
+import galaxy.hexagonal.arch.domain.inventory.resp.VehicleProduct;
+import galaxy.hexagonal.arch.domain.inventory.req.VehicleProductRequest;
 import galaxy.hexagonal.arch.inventory.application.port.out.inventory.GenericInventoryPort;
 import galaxy.hexagonal.arch.inventory.application.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +18,18 @@ public class InventoryServiceImpl extends InventoryService {
     private final GenericInventoryPort adapter;
 
     @Override
-    public void addProductToCatalog(VehicleProduct product) {
+    public void createModel(VehicleModel model) {
+        adapter.createModel(model);
+    }
 
-        if (!adapter.modelPresent(product.model())) {
-            adapter.createModel(product.model());
-        }
+    @Override
+    public List<VehicleModel> getAllModels() {
+        return adapter.getAllModels();
+    }
 
+    @Override
+    public void addProductToCatalog(VehicleProductRequest product) {
         adapter.createProduct(product);
-
     }
 
     @Override
@@ -35,4 +41,5 @@ public class InventoryServiceImpl extends InventoryService {
     public List<VehicleProduct> getAllProducts() {
         return adapter.getAllProducts();
     }
+
 }

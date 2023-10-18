@@ -1,7 +1,8 @@
 package galaxy.hexagonal.arch.inventory.adapter.in.rest.impl;
 
 import galaxy.hexagonal.arch.domain.inventory.req.InventoryVehicleItem;
-import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
+import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
+import galaxy.hexagonal.arch.domain.inventory.req.VehicleProductRequest;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.InventoryRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
 import galaxy.hexagonal.arch.inventory.application.service.InventoryService;
@@ -22,6 +23,25 @@ public class InventoryRestControllerImpl extends BaseRestController implements I
 
     private final InventoryService inventoryService;
 
+    @Override
+    public ResponseEntity<?> createModel(VehicleModel model) {
+        try {
+            inventoryService.createModel(model);
+            return ofCreated();
+        } catch (Exception e) {
+            return ofError(e);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getAllModels() {
+        try {
+            return ofSuccess(inventoryService.getAllModels());
+        } catch (Exception e) {
+            return ofError(e);
+        }
+    }
+
     public ResponseEntity<?> getAllProducts() {
         try {
             return ofSuccess(inventoryService.getAllProducts());
@@ -30,7 +50,7 @@ public class InventoryRestControllerImpl extends BaseRestController implements I
         }
     }
 
-    public ResponseEntity<?> createProduct(VehicleProduct vehicleProduct) {
+    public ResponseEntity<?> createProduct(VehicleProductRequest vehicleProduct) {
         try {
             inventoryService.addProductToCatalog(vehicleProduct);
             return ofCreated();

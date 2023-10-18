@@ -15,4 +15,6 @@ public interface ModelRepository extends JpaRepository<Model, Integer> {
     @Query("SELECT m FROM Model m WHERE m.type=:#{#model.type.name()} AND m.brand=:#{#model.brand} AND m.year=:#{#model.year} AND m.model=:#{#model.model}")
     Model findModel(@Param("model") VehicleModel domainModel);
 
+    Model findByCode(String code);
+
 }

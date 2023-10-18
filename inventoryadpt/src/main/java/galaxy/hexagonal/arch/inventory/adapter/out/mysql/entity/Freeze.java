@@ -32,10 +32,6 @@ public class Freeze extends GenericStatusEntity {
     @Column(name = "freeze_code")
     private String freezeCode;
 
-    @OneToOne
-    @JoinColumn(name = "freeze_owner")
-    private Renter freezeOwner;
-
     @OneToOne(mappedBy = "Freeze")
     private Vehicle vehicle;
 

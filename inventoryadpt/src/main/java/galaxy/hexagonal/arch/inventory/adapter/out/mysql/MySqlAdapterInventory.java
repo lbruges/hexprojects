@@ -2,7 +2,8 @@ package galaxy.hexagonal.arch.inventory.adapter.out.mysql;
 
 import galaxy.hexagonal.arch.domain.inventory.req.InventoryVehicleItem;
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
-import galaxy.hexagonal.arch.domain.inventory.req.VehicleProduct;
+import galaxy.hexagonal.arch.domain.inventory.req.VehicleProductRequest;
+import galaxy.hexagonal.arch.domain.inventory.resp.VehicleProduct;
 import galaxy.hexagonal.arch.inventory.application.port.out.inventory.GenericInventoryPort;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Model;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Product;
@@ -26,19 +27,23 @@ public class MySqlAdapterInventory extends GenericInventoryPort {
     private final ModelMapper modelMapper;
 
     @Override
-    public boolean modelPresent(VehicleModel model) {
-        return modelRepository.modelExists(model);
-    }
-
-    @Override
     public void createModel(VehicleModel model) {
         modelRepository.save(modelMapper.toEntity(model));
     }
 
     @Override
-    public void createProduct(VehicleProduct product) {
-        Product productEntity = productMapper.toEntity(product);
-        Model modelEntity = modelRepository.findModel(product.model());
+    public List<VehicleModel> getAllModels() {
+        return modelMapper.toDomains(modelRepository.findAll());
+    }
+
+    @Override
+    public void createProduct(VehicleProductRequest product) {
+        Product productEntity = Product.builder()
+                .price(product.price())
+                .sku(product.sku())
+                .build();
+
+        Model modelEntity = modelRepository.findByCode(product.modelCode());
         productEntity.setModel(modelEntity);
         productRepository.save(productEntity);
     }

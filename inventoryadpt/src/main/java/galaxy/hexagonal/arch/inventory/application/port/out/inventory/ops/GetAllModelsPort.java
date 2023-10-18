@@ -2,8 +2,8 @@ package galaxy.hexagonal.arch.inventory.application.port.out.inventory.ops;
 
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
 
-public interface VerifyModelPort {
+import java.util.List;
 
-    boolean modelPresent(VehicleModel model);
-
+public interface GetAllModelsPort {
+    List<VehicleModel> getAllModels();
 }

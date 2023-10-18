@@ -20,6 +20,9 @@ import lombok.NoArgsConstructor;
 public class Model extends GenericEntity {
 
     @Column
+    private String code;
+
+    @Column
     private String type;
 
     @Column

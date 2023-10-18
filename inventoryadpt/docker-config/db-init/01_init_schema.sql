@@ -10,13 +10,16 @@ USE `galaxyrental` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`model` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(150) NOT NULL,
   `type` VARCHAR(100) NOT NULL,
   `brand` VARCHAR(150) NOT NULL,
   `year` INT NOT NULL,
   `model` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `type_brand_year` (`brand` ASC, `model` ASC, `type` ASC, `year` ASC) VISIBLE,
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE,
+  INDEX `code_INDEX` (`code` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -42,6 +45,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `galaxyrental`.`freeze`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `galaxyrental`.`freeze` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `freeze_date` DATETIME NOT NULL DEFAULT NOW(),
+  `freeze_time_minutes` INT NOT NULL,
+  `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
+  `freeze_code` VARCHAR(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `freeze_code_UNIQUE` (`freeze_code` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `galaxyrental`.`renter`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`renter` (
@@ -55,28 +73,6 @@ CREATE TABLE IF NOT EXISTS `galaxyrental`.`renter` (
   INDEX `id_origin_licence_SEARCH` (`id_document` ASC, `licence_id` ASC, `origin` ASC) INVISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `id_origin_licence_UNIQUE` (`id_document` ASC, `licence_id` ASC, `origin` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `galaxyrental`.`freeze`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `galaxyrental`.`freeze` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `freeze_date` DATETIME NOT NULL DEFAULT NOW(),
-  `freeze_time_minutes` INT NOT NULL,
-  `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
-  `freeze_code` VARCHAR(150) NOT NULL,
-  `freeze_owner` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `freeze_code_UNIQUE` (`freeze_code` ASC) VISIBLE,
-  INDEX `fk_freeze_renter1_idx` (`freeze_owner` ASC) VISIBLE,
-  CONSTRAINT `fk_freeze_renter1`
-    FOREIGN KEY (`freeze_owner`)
-    REFERENCES `galaxyrental`.`renter` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
