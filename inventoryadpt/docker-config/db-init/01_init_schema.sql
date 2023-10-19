@@ -3,6 +3,7 @@
 -- Schema galaxyrental
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `galaxyrental` DEFAULT CHARACTER SET utf8 ;
+SET GLOBAL time_zone = '-5:00';
 USE `galaxyrental` ;
 
 -- -----------------------------------------------------

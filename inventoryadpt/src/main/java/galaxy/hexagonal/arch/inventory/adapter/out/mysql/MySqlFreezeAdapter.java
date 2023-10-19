@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static galaxy.hexagonal.arch.inventory.adapter.out.mysql.Constants.SINGLE_RESULT_PAGE;
+
 @RequiredArgsConstructor
 public class MySqlFreezeAdapter extends GenericFreezePort {
 
@@ -38,11 +40,10 @@ public class MySqlFreezeAdapter extends GenericFreezePort {
                     .build();
 
             vehicleFreeze = freezeRepository.save(toFreeze);
-            Vehicle rentCandidate = vehicleRepository.getVehicleToFreeze(sku);
 
-            if (rentCandidate == null) {
-                throw new InventoryException(ErrorType.RAN_OUT_OF_INVENTORY);
-            }
+            Vehicle rentCandidate = vehicleRepository.getVehiclesToFreeze(SINGLE_RESULT_PAGE, sku).stream()
+                    .findFirst()
+                    .orElseThrow(() -> new InventoryException(ErrorType.RAN_OUT_OF_INVENTORY));
 
             rentCandidate.setFreeze(vehicleFreeze);
             vehicleRepository.save(rentCandidate);

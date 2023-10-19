@@ -1,5 +1,6 @@
 package galaxy.hexagonal.arch.inventory.adapter.in.rest.impl;
 
+import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.FreezeRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.model.FreezeCommand;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
@@ -8,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Routes.FREEZE_PATH;
 
@@ -21,7 +25,12 @@ public class FreezeRestControllerImpl extends BaseRestController implements Free
     @Override
     public ResponseEntity<?> freezeRental(FreezeCommand command) {
         try {
-            return ofSuccess(freezeService.freezeRental(command.sku(), command.freezePeriod()));
+            Period freezePeriod = Period.builder()
+                    .startDateTime(LocalDateTime.now())
+                    .duration(Duration.ofMinutes(command.freezeDurationInMins()))
+                    .build();
+
+            return ofSuccess(freezeService.freezeRental(command.sku(), freezePeriod));
         } catch (Exception e) {
             return ofError(e);
         }
