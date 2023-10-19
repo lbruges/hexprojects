@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
+    // TODO: fix query - available after rental
     @Query("SELECT v FROM Vehicle v LEFT JOIN v.rental r WHERE (r.id IS NULL AND v.freeze IS NULL) OR (r.status <> 'OVERDUE' AND " +
             "r.rentalEndDate < :targetStartDate)")
     List<Vehicle> findAvailableVehicles(@Param("targetStartDate") LocalDateTime targetStartDate);
