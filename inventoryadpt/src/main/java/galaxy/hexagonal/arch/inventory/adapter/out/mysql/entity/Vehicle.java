@@ -24,9 +24,6 @@ public class Vehicle extends GenericStatusEntity {
     @Column
     private String plate;
 
-    @Column
-    private String origin;
-
     @OneToOne
     @JoinColumn(name = "vehicleproduct_id")
     private Product product;

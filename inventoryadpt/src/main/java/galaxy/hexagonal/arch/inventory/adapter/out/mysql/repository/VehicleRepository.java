@@ -15,12 +15,14 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     String FREEZABLE_CRITERIA = "(v.rental IS NULL AND v.freeze IS NULL)";
 
-    @Query("SELECT v FROM Vehicle v WHERE " + FREEZABLE_CRITERIA + " OR (v.rental.status <> 'OVERDUE' AND " +
-            "v.rental.rentalEndDate < :targetStartDate)")
+    @Query("SELECT v FROM Vehicle v LEFT JOIN v.rental r LEFT JOIN v.freeze f WHERE (r.id IS NULL AND f.id IS NULL) OR (r.status <> 'OVERDUE' AND " +
+            "r.rentalEndDate < :targetStartDate)")
     List<Vehicle> findAvailableVehicles(@Param("targetStartDate") LocalDateTime targetStartDate);
 
+    // TODO: find a better way to do this. LIMIT not supported.
     @Lock(LockModeType.PESSIMISTIC_READ)
-    @Query("SELECT v FROM Vehicle v WHERE v.product.sku = :sku AND " + FREEZABLE_CRITERIA + " LIMIT 1")
+    @Query("SELECT v FROM Vehicle v WHERE v.product.sku = :sku AND " + FREEZABLE_CRITERIA + " AND " +
+            "v.id = (SELECT max(v.id) FROM Vehicle v)")
     Vehicle getVehicleToFreeze(@Param("sku") String sku);
 
     @Query("SELECT v FROM Vehicle v WHERE v.rental IS NULL AND v.freeze IS NOT NULL AND " +

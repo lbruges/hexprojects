@@ -82,7 +82,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`rental` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rental_start_date` DATETIME NOT NULL DEFAULT NOW(),
-  `rental_end_date` DATETIME NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
+  `rental_end_date` DATETIME NOT NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
   `renter_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -101,19 +101,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`vehicleitem` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `plate` VARCHAR(45) NOT NULL,
-  `origin` VARCHAR(150) NOT NULL,
+  `plate` VARCHAR(150) NOT NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'AVAILABLE',
   `vehicleproduct_id` INT NOT NULL,
   `freeze_id` INT NULL,
   `rental_id` INT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `plate_UNIQUE` (`plate` ASC, `origin` ASC) INVISIBLE,
   INDEX `fk_vehicleitem_vehicleproduct1_idx` (`vehicleproduct_id` ASC) VISIBLE,
-  INDEX `plate_SEARCH` (`plate` ASC, `origin` ASC) VISIBLE,
+  INDEX `plate_SEARCH` (`plate` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `fk_vehicleitem_freeze1_idx` (`freeze_id` ASC) VISIBLE,
   INDEX `fk_vehicleitem_rental1_idx` (`rental_id` ASC) VISIBLE,
+  UNIQUE INDEX `plate_UNIQUE` (`plate` ASC) VISIBLE,
   CONSTRAINT `fk_vehicleitem_vehicleproduct1`
     FOREIGN KEY (`vehicleproduct_id`)
     REFERENCES `galaxyrental`.`vehicleproduct` (`id`)

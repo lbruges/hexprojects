@@ -96,7 +96,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `galaxyrental`.`rental` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rental_start_date` DATETIME NOT NULL DEFAULT NOW(),
-  `rental_end_date` DATETIME NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
+  `rental_end_date` DATETIME NOT NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'ACTIVE',
   `renter_id` INT NOT NULL,
   PRIMARY KEY (`id`),

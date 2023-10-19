@@ -10,7 +10,7 @@ mvn clean install
 ## How to run
 With remote debug:
 ```
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 --enable-preview"
 ```
 ## External dependencies
 ### Docker

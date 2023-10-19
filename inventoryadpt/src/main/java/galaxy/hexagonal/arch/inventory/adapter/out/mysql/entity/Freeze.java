@@ -32,7 +32,7 @@ public class Freeze extends GenericStatusEntity {
     @Column(name = "freeze_code")
     private String freezeCode;
 
-    @OneToOne(mappedBy = "Freeze")
+    @OneToOne(mappedBy = "freeze")
     private Vehicle vehicle;
 
 }

@@ -6,10 +6,16 @@ import galaxy.hexagonal.arch.inventory.adapter.in.rest.CatalogRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
 import galaxy.hexagonal.arch.inventory.application.service.CatalogService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Routes.CATALOG_PATH;
@@ -18,11 +24,17 @@ import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Rou
 @RequestMapping(path = CATALOG_PATH)
 @RequiredArgsConstructor
 public class CatalogRestControllerImpl extends BaseRestController implements CatalogRestController {
+    @Value("${inv.port.avail.start.rental.time:09:00}")
+    private String rentalStartTime;
 
     private final CatalogService catalogService;
 
-    public ResponseEntity<?> getCatalog(Period rentalPeriod) {
+    public ResponseEntity<?> getCatalog(LocalDate startDate, int dayCount) {
         try {
+            Period rentalPeriod = Period.builder()
+                    .startDateTime(LocalDateTime.of(startDate, LocalTime.parse(rentalStartTime)))
+                    .duration(Duration.of(dayCount, ChronoUnit.DAYS))
+                    .build();
             List<VehicleItem> vehicleItems = catalogService.getRentableVehicles(rentalPeriod);
             return ofSuccess(vehicleItems);
         } catch (Exception e) {
