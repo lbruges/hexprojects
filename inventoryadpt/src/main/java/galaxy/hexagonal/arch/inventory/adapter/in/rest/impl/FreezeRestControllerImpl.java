@@ -1,6 +1,7 @@
 package galaxy.hexagonal.arch.inventory.adapter.in.rest.impl;
 
-import galaxy.hexagonal.arch.domain.Period;
+import galaxy.hexagonal.arch.domain.util.Duration;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.FreezeRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.model.FreezeCommand;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
@@ -10,8 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Routes.FREEZE_PATH;
 
@@ -26,8 +28,9 @@ public class FreezeRestControllerImpl extends BaseRestController implements Free
     public ResponseEntity<?> freezeRental(FreezeCommand command) {
         try {
             Period freezePeriod = Period.builder()
-                    .startDateTime(LocalDateTime.now())
-                    .duration(Duration.ofMinutes(command.freezeDurationInMins()))
+                    .startDate(LocalDate.now())
+                    .startTime(LocalTime.now())
+                    .duration(new Duration(command.freezeDurationInMins(), ChronoUnit.MINUTES))
                     .build();
 
             return ofSuccess(freezeService.freezeRental(command.sku(), freezePeriod));

@@ -16,7 +16,7 @@ import static galaxy.hexagonal.arch.inventory.adapter.in.rest.util.Constants.Rou
 @RequestMapping(path = RENTAL_PATH)
 @RequiredArgsConstructor
 public class RentalRestControllerImpl extends BaseRestController implements RentalRestController {
-    private RentalService rentalService;
+    private final RentalService rentalService;
 
     @Override
     public ResponseEntity<?> finalizeRental(FinalizeRentalCommand command) {

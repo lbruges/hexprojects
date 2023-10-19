@@ -1,8 +1,8 @@
 package galaxy.hexagonal.arch.inventory.application.service.impl;
 
-import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.rental.RentedVehicle;
 import galaxy.hexagonal.arch.domain.rental.Renter;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 import galaxy.hexagonal.arch.inventory.application.port.out.rental.GenericRentalPort;

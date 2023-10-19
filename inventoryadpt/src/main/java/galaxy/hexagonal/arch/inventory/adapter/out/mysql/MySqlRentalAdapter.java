@@ -1,7 +1,7 @@
 package galaxy.hexagonal.arch.inventory.adapter.out.mysql;
 
-import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.rental.RentedVehicle;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Rental;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Renter;
@@ -38,7 +38,7 @@ public class MySqlRentalAdapter extends GenericRentalPort {
                 renter.getLicenceNumber());
 
         if (renterEntity == null) {
-            renterRepository.save(renterMapper.toEntity(renter));
+            renterEntity = renterRepository.save(renterMapper.toEntity(renter));
         }
 
         Rental rental = Rental.builder()
@@ -47,7 +47,7 @@ public class MySqlRentalAdapter extends GenericRentalPort {
                 .rentalEndDate(rentalPeriod.getStartDateTime().plus(rentalPeriod.getDuration()))
                 .build();
 
-        rentalRepository.save(rental);
+        rental = rentalRepository.save(rental);
         vehicleEntity.setRental(rental);
         vehicleRepository.save(vehicleEntity);
 

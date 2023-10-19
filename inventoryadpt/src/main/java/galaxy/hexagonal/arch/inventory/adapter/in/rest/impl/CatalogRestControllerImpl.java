@@ -1,6 +1,7 @@
 package galaxy.hexagonal.arch.inventory.adapter.in.rest.impl;
 
-import galaxy.hexagonal.arch.domain.Period;
+import galaxy.hexagonal.arch.domain.util.Duration;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.domain.inventory.resp.VehicleItem;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.CatalogRestController;
 import galaxy.hexagonal.arch.inventory.adapter.in.rest.util.BaseRestController;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,8 +32,9 @@ public class CatalogRestControllerImpl extends BaseRestController implements Cat
     public ResponseEntity<?> getCatalog(LocalDate startDate, int dayCount) {
         try {
             Period rentalPeriod = Period.builder()
-                    .startDateTime(LocalDateTime.of(startDate, LocalTime.parse(rentalStartTime)))
-                    .duration(Duration.of(dayCount, ChronoUnit.DAYS))
+                    .startDate(startDate)
+                    .startTime(LocalTime.parse(rentalStartTime))
+                    .duration(new Duration(dayCount, ChronoUnit.DAYS))
                     .build();
             List<VehicleItem> vehicleItems = catalogService.getRentableVehicles(rentalPeriod);
             return ofSuccess(vehicleItems);

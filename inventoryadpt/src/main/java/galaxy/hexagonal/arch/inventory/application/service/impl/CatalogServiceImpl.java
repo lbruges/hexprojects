@@ -1,19 +1,15 @@
 package galaxy.hexagonal.arch.inventory.application.service.impl;
 
-import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.inventory.resp.VehicleItem;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
-import galaxy.hexagonal.arch.inventory.application.port.in.catalog.GetRentableVehiclesUseCase;
 import galaxy.hexagonal.arch.inventory.application.port.out.catalog.GenericCatalogPort;
 import galaxy.hexagonal.arch.inventory.application.service.CatalogService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Service

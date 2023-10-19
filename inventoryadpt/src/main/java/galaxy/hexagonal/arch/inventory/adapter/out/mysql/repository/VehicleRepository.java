@@ -30,7 +30,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     @Query("SELECT CASE WHEN (COUNT(v) > 0)  THEN TRUE ELSE FALSE END FROM Vehicle v WHERE v.plate = :plate AND " +
             "(v.rental IS NOT NULL AND v.rental.renter.idDocument = :#{#renter.getDni()} AND " +
-            "v.rental.renter.origin = :#{#renter.getOrigin()} AND v.rental.renter.licence = :#{#renter.getLicence()})")
+            "v.rental.renter.origin = :#{#renter.getOrigin()} AND v.rental.renter.licence = :#{#renter.getLicenceNumber()})")
     boolean vehicleAndRenterMatch(@Param("plate") String plate, @Param("renter") Renter renter);
 
 }

@@ -1,7 +1,7 @@
 package galaxy.hexagonal.arch.inventory.application.service.impl;
 
-import galaxy.hexagonal.arch.domain.Period;
 import galaxy.hexagonal.arch.domain.inventory.resp.FrozenInventory;
+import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 import galaxy.hexagonal.arch.inventory.application.port.out.freeze.GenericFreezePort;
 import galaxy.hexagonal.arch.inventory.application.service.FreezeService;
