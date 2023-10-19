@@ -66,7 +66,8 @@ public class MySqlFreezeAdapter extends GenericFreezePort {
 
     @Override
     public FrozenInventory getFreeze(String freezeCode) {
-        Freeze freeze = Optional.ofNullable(freezeRepository.findByFreezeCode(freezeCode)).orElseThrow( () -> new InventoryException(ErrorType.FREEZE_NOT_FOUND) );
+        Freeze freeze = Optional.ofNullable(freezeRepository.findByFreezeCode(freezeCode))
+                .orElseThrow(() -> new InventoryException(ErrorType.FREEZE_NOT_FOUND));
 
         return FrozenInventory.builder()
                 .freezeCode(freeze.getFreezeCode())
@@ -75,8 +76,15 @@ public class MySqlFreezeAdapter extends GenericFreezePort {
     }
 
     @Override
+    @Transactional
     public void thawVehicle(String freezeCode) {
         try {
+            Freeze freezeEntity = Optional.ofNullable(freezeRepository.findByFreezeCode(freezeCode))
+                    .orElseThrow(() -> new InventoryException(ErrorType.FREEZE_NOT_FOUND));
+
+            Vehicle vehicleEntity = freezeEntity.getVehicle();
+            vehicleEntity.setFreeze(null);
+            vehicleRepository.save(vehicleEntity);
             freezeRepository.deleteByFreezeCode(freezeCode);
         } catch (Exception e) {
             throw new InventoryException(ErrorType.UNABLE_TO_THAW);
