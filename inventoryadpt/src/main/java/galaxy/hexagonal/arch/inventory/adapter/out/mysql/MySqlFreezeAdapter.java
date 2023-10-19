@@ -66,15 +66,12 @@ public class MySqlFreezeAdapter extends GenericFreezePort {
 
     @Override
     public FrozenInventory getFreeze(String freezeCode) {
-        try {
-            Freeze freeze = freezeRepository.findByFreezeCode(freezeCode);
-            return FrozenInventory.builder()
-                    .freezeCode(freeze.getFreezeCode())
-                    .vehicleItem(rentableVehicleMapper.toDomain(freeze.getVehicle()))
-                    .build();
-        } catch (Exception e) {
-            throw new InventoryException(ErrorType.FREEZE_NOT_FOUND);
-        }
+        Freeze freeze = Optional.ofNullable(freezeRepository.findByFreezeCode(freezeCode)).orElseThrow( () -> new InventoryException(ErrorType.FREEZE_NOT_FOUND) );
+
+        return FrozenInventory.builder()
+                .freezeCode(freeze.getFreezeCode())
+                .vehicleItem(rentableVehicleMapper.toDomain(freeze.getVehicle()))
+                .build();
     }
 
     @Override

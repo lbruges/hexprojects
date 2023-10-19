@@ -140,7 +140,7 @@ DROP PROCEDURE IF EXISTS `galaxyrental`.`rentalupdate`;
 DELIMITER $$
 CREATE PROCEDURE `galaxyrental`.`rentalupdate` ()
 BEGIN
-	UPDATE `galaxyrental`.`rental` SET `status` = 'OVERDUE' WHERE rental_end_date < NOW();
+	UPDATE `galaxyrental`.`rental` SET `status` = 'OVERDUE' WHERE NOW() > rental_end_date;
 END $$
 DELIMITER ;
 
@@ -149,12 +149,11 @@ DROP PROCEDURE IF EXISTS `galaxyrental`.`freezedeletion`;
 DELIMITER $$
 CREATE PROCEDURE `galaxyrental`.`freezedeletion` ()
 BEGIN
-	SET @to_delete = (SELECT `id` FROM `galaxyrental`.`freeze` WHERE DATE_ADD(`freeze_date`, INTERVAL `freeze_time_minutes` MINUTE) < NOW());
+	SET @to_delete = (SELECT `id` FROM `galaxyrental`.`freeze` WHERE NOW() > DATE_ADD(`freeze_date`, INTERVAL `freeze_time_minutes` MINUTE));
     UPDATE `galaxyrental`.`vehicleitem` SET `freeze_id` = NULL WHERE freeze_id IN (@to_delete);
     DELETE FROM `galaxyrental`.`freeze` WHERE `id` IN (@to_delete);
 END $$
 DELIMITER ;
-
 -- -----------------------------------------------------
 -- Clean-up Events
 -- -----------------------------------------------------
