@@ -24,6 +24,7 @@ public enum ErrorType {
 
     //Accounting errors.
     RENTAL_ACCOUNTING_ERROR("201", "Error while accounting rental.", 500),
+    RENTAL_BILL_ERROR("202", "Error while generation bill. Please review the input data.", 400),
 
     //Calendar errors.
     INVALID_DATE_RANGE("301", "Invalid date range.", 400);

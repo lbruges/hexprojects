@@ -5,8 +5,5 @@ services:
   mongo:
     image: mongo
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: test123
       MONGO_INITDB_DATABASE: billing
     ports:
-      - 27017:27017

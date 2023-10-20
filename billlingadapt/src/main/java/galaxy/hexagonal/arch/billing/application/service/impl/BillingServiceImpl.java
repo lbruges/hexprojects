@@ -65,7 +65,7 @@ public class BillingServiceImpl extends BillingService {
         return Item.builder()
                 .basePrice(basePrice)
                 .totalPrice(totalPrice)
-                .code(rentableVehicle.getSku())
+                .code(rentableVehicle.getSku() + "_" + rentableVehicle.getPlate())
                 .units(RENT_UNITS)
                 .overdueCharges(overdueCharges)
                 .build();

@@ -7,8 +7,10 @@ import galaxy.hexagonal.arch.billing.application.port.out.GenericBillPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Profile("mongo")
+@EnableMongoRepositories
 @Configuration
 public class MongoConfig {
 
@@ -18,8 +20,8 @@ public class MongoConfig {
     }
 
     @Bean
-    public GenericBillPort genericBillPort(BillRepository billRepository) {
-        return new MongoBillAdapter(billRepository, billMapper());
+    public GenericBillPort genericBillPort(BillRepository mongoBillRepository) {
+        return new MongoBillAdapter(mongoBillRepository, billMapper());
     }
 
 }

@@ -13,12 +13,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MongoBillAdapter extends GenericBillPort {
 
-    private final BillRepository billRepository;
+    private final BillRepository mongoBillRepository;
     private final BillMapper billMapper;
 
     @Override
     public List<Bill> getAllBills() {
-        return billMapper.toDomains(billRepository.findAll());
+        return billMapper.toDomains(mongoBillRepository.findAll());
     }
 
     @Override
@@ -26,6 +26,6 @@ public class MongoBillAdapter extends GenericBillPort {
         BillDocument document = billMapper.toEntity(bill);
         document.setId(IdGenerator.generateId());
 
-        return billMapper.toDomain(billRepository.save(document));
+        return billMapper.toDomain(mongoBillRepository.save(document));
     }
 }
