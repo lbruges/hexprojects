@@ -6,6 +6,7 @@ import galaxy.hexagonal.arch.domain.rental.ReturnedVehicle;
 import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
+import galaxy.hexagonal.arch.inventory.application.port.out.billing.GenericBillingPort;
 import galaxy.hexagonal.arch.inventory.application.port.out.rental.GenericRentalPort;
 import galaxy.hexagonal.arch.inventory.application.service.RentalService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class RentalServiceImpl extends RentalService {
 
     private final GenericRentalPort rentalPort;
+    private final GenericBillingPort billingPort;
 
     @Override
     public RentedVehicle finalizeRental(String freezeCode, Renter renter, Period rentalPeriod) {
@@ -29,7 +31,10 @@ public class RentalServiceImpl extends RentalService {
     @Override
     public ReturnedVehicle returnVehicle(String vehiclePlate, Renter renter) {
         try {
-            return rentalPort.returnVehicle(vehiclePlate, renter);
+            ReturnedVehicle vehicle = rentalPort.returnVehicle(vehiclePlate, renter);
+            billingPort.reportToBilling(vehicle);
+
+            return vehicle;
         } catch (Exception e) {
             throw new InventoryException(ErrorType.UNABLE_TO_RETURN_VEHICLE, e);
         }
