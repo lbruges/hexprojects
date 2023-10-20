@@ -17,5 +17,6 @@ public class Item {
     private double basePrice;
     private double totalPrice;
     private int units;
+    private int overdueCharges;
 
 }

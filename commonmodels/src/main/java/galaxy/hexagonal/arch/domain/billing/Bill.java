@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class Bill {
     private LocalDate rentalDate;
     private String concept;
+    @Singular
     private List<Item> items;
     private Person purchaser;
 }

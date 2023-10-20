@@ -79,6 +79,7 @@ public class MySqlRentalAdapter extends GenericRentalPort {
         Rental rental = vehicleEntity.getRental();
         builder.renter(renterMapper.toDomain(rental.getRenter()));
         builder.originalReturnDate(rental.getRentalEndDate());
+        builder.rentalDate(rental.getRentalStartDate());
         vehicleEntity.setRental(null);
 
         Freeze freeze = vehicleEntity.getFreeze();

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class ReturnedVehicle {
     private RentableVehicle item;
     private Renter renter;
+    private LocalDateTime rentalDate;
     private LocalDateTime originalReturnDate;
     private LocalDateTime actualReturnDate;
 }
