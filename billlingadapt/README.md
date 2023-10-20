@@ -14,7 +14,7 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=
 ```
 ## External dependencies
 ### Docker
-MongoDB + MySQL
+MongoDB
 ```
 docker-compose -f deps-docker-compose.yml up
 ```
