@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Singular;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -17,7 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Bill {
-    private LocalDate rentalDate;
+    private LocalDateTime rentalStartDate;
+    private LocalDateTime rentalEndDate;
+    private LocalDateTime returnDate;
     private String concept;
     @Singular
     private List<Item> items;
