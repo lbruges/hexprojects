@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.inventory.application.mapper;
+package galaxy.hexagonal.arch.domain.util.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

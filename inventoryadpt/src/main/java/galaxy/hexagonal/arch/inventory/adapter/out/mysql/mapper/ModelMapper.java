@@ -3,8 +3,8 @@ package galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper;
 import galaxy.hexagonal.arch.domain.inventory.VehicleType;
 import galaxy.hexagonal.arch.domain.inventory.req.VehicleModel;
 import galaxy.hexagonal.arch.domain.util.IdGenerator;
+import galaxy.hexagonal.arch.domain.util.mapper.GenericDomainEntityMapper;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Model;
-import galaxy.hexagonal.arch.inventory.application.mapper.GenericDomainEntityMapper;
 
 import java.util.Optional;
 

@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Bill {
+    private String code;
     private LocalDateTime rentalStartDate;
     private LocalDateTime rentalEndDate;
     private LocalDateTime returnDate;

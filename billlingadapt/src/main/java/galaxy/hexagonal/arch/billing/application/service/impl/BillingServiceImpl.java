@@ -36,10 +36,10 @@ public class BillingServiceImpl extends BillingService {
                 .returnDate(rentedVehicle.getActualReturnDate())
                 .item(vehicleToItem(rentedVehicle.getItem(), rentedVehicle.getOriginalReturnDate(),
                         rentedVehicle.getActualReturnDate()))
+                .purchaser(rentedVehicle.getRenter())
                 .build();
 
-        adapter.createBill(bill);
-        return bill;
+        return adapter.createBill(bill);
     }
 
     @Override

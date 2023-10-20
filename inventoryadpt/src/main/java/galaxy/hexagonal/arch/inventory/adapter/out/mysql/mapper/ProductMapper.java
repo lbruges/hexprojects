@@ -1,8 +1,8 @@
 package galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper;
 
 import galaxy.hexagonal.arch.domain.inventory.resp.VehicleProduct;
+import galaxy.hexagonal.arch.domain.util.mapper.GenericDomainEntityMapper;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Product;
-import galaxy.hexagonal.arch.inventory.application.mapper.GenericDomainEntityMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

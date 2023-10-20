@@ -1,10 +1,10 @@
 package galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper;
 
 import galaxy.hexagonal.arch.domain.inventory.resp.VehicleItem;
+import galaxy.hexagonal.arch.domain.util.mapper.GenericDomainEntityMapper;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Vehicle;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
-import galaxy.hexagonal.arch.inventory.application.mapper.GenericDomainEntityMapper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
