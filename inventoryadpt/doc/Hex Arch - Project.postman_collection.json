@@ -186,7 +186,64 @@
 		},
 		{
 			"name": "Rental",
-			"item": []
+			"item": [
+				{
+					"name": "Create Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"freezeCode\": \"7f6a4ae6-2422-4bbf-92fd-81707da55b1b\",\r\n    \"renter\": {\r\n        \"fullName\": \"Test Test\",\r\n        \"dni\": \"123456789\",\r\n        \"birthDate\": \"1995-05-15\",\r\n        \"origin\": \"Bogota\",\r\n        \"licenceNumber\": \"1234ABCD\"\r\n    },\r\n    \"rentalPeriod\": {\r\n        \"startDate\": \"2023-10-19\",\r\n        \"duration\": {\r\n            \"duration\": 1,\r\n            \"unit\": \"DAYS\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rental",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rental"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return Car",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plate\": \"ABC-123\",\r\n    \"renter\": {\r\n        \"fullName\": \"Test Test\",\r\n        \"dni\": \"123456789\",\r\n        \"birthDate\": \"1995-05-15\",\r\n        \"origin\": \"Bogota\",\r\n        \"licenceNumber\": \"1234ABCD\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/rental",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rental"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Freeze",
@@ -237,7 +294,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/freeze/e6cf8624-0483-4e59-a7e2-f81a1982d537",
+							"raw": "http://localhost:8080/freeze/7f6a4ae6-2422-4bbf-92fd-81707da55b1b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -245,7 +302,7 @@
 							"port": "8080",
 							"path": [
 								"freeze",
-								"e6cf8624-0483-4e59-a7e2-f81a1982d537"
+								"7f6a4ae6-2422-4bbf-92fd-81707da55b1b"
 							]
 						}
 					},
