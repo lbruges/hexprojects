@@ -30,8 +30,7 @@ public class RentalRestControllerImpl extends BaseRestController implements Rent
     @Override
     public ResponseEntity<?> returnVehicle(ReturnVehicleCommand command) {
         try {
-            rentalService.returnVehicle(command.plate(), command.renter());
-            return ofNoContent();
+            return ofSuccess(rentalService.returnVehicle(command.plate(), command.renter()));
         } catch (Exception e) {
             return ofError(e);
         }

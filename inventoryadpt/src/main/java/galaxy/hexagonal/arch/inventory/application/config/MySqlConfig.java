@@ -77,9 +77,9 @@ public class MySqlConfig {
 
     @Bean
     public GenericRentalPort genericRentalPort(VehicleRepository vehicleRepository, RentalRepository rentalRepository,
-                                               RenterRepository renterRepository) {
-        return new MySqlRentalAdapter(vehicleRepository, rentalRepository, renterRepository, renterMapper(),
-                rentedVehicleMapper());
+                                               RenterRepository renterRepository, FreezeRepository freezeRepository) {
+        return new MySqlRentalAdapter(vehicleRepository, rentalRepository, renterRepository, freezeRepository, renterMapper(),
+                rentedVehicleMapper(), rentableVehicleMapper());
     }
 
 }

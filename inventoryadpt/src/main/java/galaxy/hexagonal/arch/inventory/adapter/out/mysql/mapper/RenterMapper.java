@@ -20,6 +20,7 @@ public class RenterMapper extends GenericDomainEntityMapper<galaxy.hexagonal.arc
                 .origin(entity.getOrigin())
                 .fullName(entity.getFullName())
                 .dni(entity.getIdDocument())
+                .licenceNumber(entity.getLicence())
                 .build();
     }
 }

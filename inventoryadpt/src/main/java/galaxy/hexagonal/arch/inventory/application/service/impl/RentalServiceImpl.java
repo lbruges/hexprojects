@@ -2,6 +2,7 @@ package galaxy.hexagonal.arch.inventory.application.service.impl;
 
 import galaxy.hexagonal.arch.domain.rental.RentedVehicle;
 import galaxy.hexagonal.arch.domain.rental.Renter;
+import galaxy.hexagonal.arch.domain.rental.ReturnedVehicle;
 import galaxy.hexagonal.arch.domain.util.Period;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
@@ -26,9 +27,9 @@ public class RentalServiceImpl extends RentalService {
     }
 
     @Override
-    public void returnVehicle(String vehiclePlate, Renter renter) {
+    public ReturnedVehicle returnVehicle(String vehiclePlate, Renter renter) {
         try {
-            rentalPort.returnVehicle(vehiclePlate, renter);
+            return rentalPort.returnVehicle(vehiclePlate, renter);
         } catch (Exception e) {
             throw new InventoryException(ErrorType.UNABLE_TO_RETURN_VEHICLE, e);
         }

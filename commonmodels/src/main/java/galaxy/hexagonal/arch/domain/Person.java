@@ -17,5 +17,4 @@ import java.time.LocalDate;
 public class Person {
     private String fullName;
     private String dni;
-    private LocalDate birthDate;
 }

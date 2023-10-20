@@ -1,8 +1,9 @@
 package galaxy.hexagonal.arch.inventory.application.port.in.rental;
 
 import galaxy.hexagonal.arch.domain.rental.Renter;
+import galaxy.hexagonal.arch.domain.rental.ReturnedVehicle;
 
 public interface ReturnVehicleUseCase {
-    void returnVehicle(String vehiclePlate, Renter renter);
+    ReturnedVehicle returnVehicle(String vehiclePlate, Renter renter);
 
 }
