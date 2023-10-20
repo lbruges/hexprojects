@@ -1,13 +1,13 @@
 package galaxy.hexagonal.arch.inventory.adapter.out.mysql;
 
 import galaxy.hexagonal.arch.domain.inventory.resp.FrozenInventory;
+import galaxy.hexagonal.arch.domain.util.IdGenerator;
 import galaxy.hexagonal.arch.exception.ErrorType;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Freeze;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.entity.Vehicle;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.mapper.RentableVehicleMapper;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository.FreezeRepository;
 import galaxy.hexagonal.arch.inventory.adapter.out.mysql.repository.VehicleRepository;
-import galaxy.hexagonal.arch.inventory.adapter.out.util.IdGenerator;
 import galaxy.hexagonal.arch.inventory.application.exception.InventoryException;
 import galaxy.hexagonal.arch.inventory.application.port.out.freeze.GenericFreezePort;
 import jakarta.transaction.Transactional;

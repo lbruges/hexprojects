@@ -1,4 +1,4 @@
-package galaxy.hexagonal.arch.inventory.adapter.out.util;
+package galaxy.hexagonal.arch.domain.util;
 
 import java.util.UUID;
 
