@@ -34,7 +34,7 @@ public class BillingServiceImpl extends BillingService {
                 .rentalStartDate(rentedVehicle.getRentalDate())
                 .rentalEndDate(rentedVehicle.getOriginalReturnDate())
                 .returnDate(rentedVehicle.getActualReturnDate())
-                .item(vehicleToItem(rentedVehicle.getItem(), rentedVehicle.getOriginalReturnDate(),
+                .item(vehicleToItem(rentedVehicle.getItem(), rentedVehicle.getRentalDate(), rentedVehicle.getOriginalReturnDate(),
                         rentedVehicle.getActualReturnDate()))
                 .purchaser(rentedVehicle.getRenter())
                 .build();
@@ -47,12 +47,16 @@ public class BillingServiceImpl extends BillingService {
         return adapter.getAllBills();
     }
 
-    private Item vehicleToItem(RentableVehicle rentableVehicle, LocalDateTime originalReturnDate,
+    private Item vehicleToItem(RentableVehicle rentableVehicle, LocalDateTime rentalDate, LocalDateTime originalReturnDate,
                                LocalDateTime actualReturnDate) {
-
         double basePrice = rentableVehicle.getRentalPrice();
-        double totalPrice = rentableVehicle.getRentalPrice();
         int overdueCharges = 0;
+
+        long originalRentalPeriod = rentalDate.until(originalReturnDate, ChronoUnit.DAYS);
+
+        if (originalRentalPeriod < 1) originalRentalPeriod = 1;
+
+        double totalPrice = (originalRentalPeriod * basePrice);
 
         if (actualReturnDate.isAfter(originalReturnDate)) {
             long dayDelay = originalReturnDate.until(actualReturnDate, ChronoUnit.DAYS);
